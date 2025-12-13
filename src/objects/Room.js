@@ -10,11 +10,11 @@ export default class Room {
     static RENDER_OFFSET_X = (CANVAS_WIDTH - Room.WIDTH * Tile.TILE_SIZE) / 2;
 	static RENDER_OFFSET_Y = (CANVAS_HEIGHT - Room.HEIGHT * Tile.TILE_SIZE) / 2;
 
-	static TOP_EDGE = Room.RENDER_OFFSET_Y + Tile.TILE_SIZE;
+	static TOP_EDGE = Room.RENDER_OFFSET_Y + Tile.TILE_SIZE + 5;
 	static BOTTOM_EDGE =
-		CANVAS_HEIGHT - Room.RENDER_OFFSET_Y - Tile.TILE_SIZE - 5;
-	static LEFT_EDGE = Room.RENDER_OFFSET_X + Tile.TILE_SIZE - 5;
-	static RIGHT_EDGE = CANVAS_WIDTH - Tile.TILE_SIZE * 2 + 5;
+		CANVAS_HEIGHT - Room.RENDER_OFFSET_Y - Tile.TILE_SIZE - 1;
+	static LEFT_EDGE = Room.RENDER_OFFSET_X + Tile.TILE_SIZE - 2;
+	static RIGHT_EDGE = CANVAS_WIDTH - Tile.TILE_SIZE * 2 + 3;
 	static CENTER_X = Math.floor(
 		Room.LEFT_EDGE + (Room.RIGHT_EDGE - Room.LEFT_EDGE) / 2
 	);
@@ -51,8 +51,8 @@ export default class Room {
         6, 7, 8, 9, 16, 17, 18, 19, 26, 27, 28, 29
     ]
 
-    constructor(/*player*/) {
-        this.player// = player;
+    constructor(player) {
+        this.player = player;
         this.dimensions = new Vector(Room.WIDTH, Room.HEIGHT);
 
         this.sprites = Sprite.generateSpritesFromSpriteSheet(
@@ -64,7 +64,7 @@ export default class Room {
         this.tiles = this.generateWallsAndFloors();
 
         // Generate entities at the start of a wave
-        this.entities = [];
+        this.entities = [this.player];
 
         // Will be filled with cash for player to pick up whenever they kill enemies
         this.objects = [];
@@ -75,22 +75,22 @@ export default class Room {
     }
 
     update(dt) {
-        // this.renderQueue = this.buildRenderQueue();
+        this.renderQueue = this.buildRenderQueue();
 
-        //this.cleanUpEntities();
-        // this.updateEntities(dt);
+        this.cleanUpEntities();
+        this.updateEntities(dt);
 
-        // this.cleanUpObjects();
+        this.cleanUpObjects();
 
-        // this.updateObjects(dt);
+        this.updateObjects(dt);
     }
 
     render() {
         this.renderTiles();
 
-        // this.renderQueue.forEach((elementToRender) => {
-		// 	elementToRender.render(this.adjacentOffset);
-		// });
+        this.renderQueue.forEach((elementToRender) => {
+			elementToRender.render(this.adjacentOffset);
+		});
     }
 
     // Code copied from Zelda
@@ -201,25 +201,25 @@ export default class Room {
         return tiles;
     }
 
-    // buildRenderQueue() {
-	// 	return [...this.entities, ...this.objects].sort((a, b) => {
-	// 		let order = 0;
-	// 		const bottomA = a.hitbox.position.y + a.hitbox.dimensions.y;
-	// 		const bottomB = b.hitbox.position.y + b.hitbox.dimensions.y;
+    buildRenderQueue() {
+		return [...this.entities, ...this.objects].sort((a, b) => {
+			let order = 0;
+			const bottomA = a.hitbox.position.y + a.hitbox.dimensions.y;
+			const bottomB = b.hitbox.position.y + b.hitbox.dimensions.y;
 			
-	// 		if (a.renderPriority < b.renderPriority) {
-	// 			order = -1;
-	// 		} else if (a.renderPriority > b.renderPriority) {
-	// 			order = 1;
-	// 		} else if (bottomA < bottomB) {
-	// 			order = -1;
-	// 		} else {
-	// 			order = 1;
-	// 		}
+			if (a.renderPriority < b.renderPriority) {
+				order = -1;
+			} else if (a.renderPriority > b.renderPriority) {
+				order = 1;
+			} else if (bottomA < bottomB) {
+				order = -1;
+			} else {
+				order = 1;
+			}
 
-	// 		return order;
-	// 	});
-	// }
+			return order;
+		});
+	}
 
     cleanUpEntities() {
         this.entities = this.entities.filter((entity) => !entity.isDead);
