@@ -1,8 +1,9 @@
 import State from "../../lib/State.js";
-import { timer } from "../globals.js";
+import { timer, stateMachine } from "../globals.js";
 import Room from "../objects/Room.js";
 import Player from "../entities/Player.js";
 import UserInterface from "../services/UserInterface.js";
+import GameStateName from "../enums/GameStateName.js";
 
 export default class PlayState extends State {
 	constructor() {
