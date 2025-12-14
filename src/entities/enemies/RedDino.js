@@ -4,7 +4,7 @@ import Direction from "../../enums/Direction.js";
 import Animation from "../../../lib/Animation.js";
 
 export default class RedDino extends Enemy {
-    static SPEED = 30;
+    static SPEED = 20;
 
     constructor(sprites, player) {
         super(sprites, player);

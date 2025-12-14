@@ -4,7 +4,7 @@ import Direction from "../../enums/Direction.js";
 import Animation from "../../../lib/Animation.js";
 
 export default class GreenDino extends Enemy {
-    static SPEED = 20;
+    static SPEED = 10;
 
     constructor(sprites, player) {
         super(sprites, player);
