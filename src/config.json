@@ -17,6 +17,18 @@
 			"path": "../assets/images/Character/Hana Caraka - Base Character [sample]/walk.png",
 			"width": 640,
 			"height": 240
+		},
+		{
+			"name": "dino_green",
+			"path": "../assets/images/Enemies/DinoSprites - vita.png",
+			"width": 576,
+			"height": 24
+		},
+		{
+			"name": "dino_red",
+			"path": "../assets/images/Enemies/DinoSprites - mort.png",
+			"width": 576,
+			"height": 24
 		}
 	],
 	"fonts": [

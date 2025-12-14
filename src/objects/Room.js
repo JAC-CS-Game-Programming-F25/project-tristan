@@ -3,6 +3,9 @@ import Vector from "../../lib/Vector.js";
 import { CANVAS_HEIGHT, CANVAS_WIDTH, images } from "../globals.js";
 import Tile from "./Tile.js";
 import ImageName from '../enums/ImageName.js';
+import EnemyType from '../enums/EnemyType.js';
+import { pickRandomElement } from "../../lib/Random.js";
+import EnemyFactory from "../services/EnemyFactory.js";
 
 export default class Room {
     static WIDTH = CANVAS_WIDTH / Tile.TILE_SIZE - 2;
@@ -64,7 +67,7 @@ export default class Room {
         this.tiles = this.generateWallsAndFloors();
 
         // Generate entities at the start of a wave
-        this.entities = [this.player];
+        this.entities = this.generateEntities();
 
         // Will be filled with cash for player to pick up whenever they kill enemies
         this.objects = [];
@@ -200,6 +203,20 @@ export default class Room {
 
         return tiles;
     }
+
+	generateEntities() {
+		const entities = new Array();
+
+		const enemyType = EnemyType[pickRandomElement(Object.keys(EnemyType))];
+
+		for (let i = 0; i < 5; i++) {
+			entities.push(EnemyFactory.createInstance(enemyType, this.player));
+		}
+
+		entities.push(this.player);
+
+		return entities;
+	}
 
     buildRenderQueue() {
 		return [...this.entities, ...this.objects].sort((a, b) => {
