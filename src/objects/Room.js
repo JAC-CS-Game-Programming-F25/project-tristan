@@ -6,6 +6,9 @@ import ImageName from '../enums/ImageName.js';
 import EnemyType from '../enums/EnemyType.js';
 import { pickRandomElement } from "../../lib/Random.js";
 import EnemyFactory from "../services/EnemyFactory.js";
+import Player from "../entities/Player.js";
+import Enemy from "../entities/enemies/Enemy.js";
+import GameEntity from "../entities/GameEntity.js";
 
 export default class Room {
     static WIDTH = CANVAS_WIDTH / Tile.TILE_SIZE - 2;
@@ -54,6 +57,10 @@ export default class Room {
         6, 7, 8, 9, 16, 17, 18, 19, 26, 27, 28, 29
     ]
 
+	/**
+	 * 
+	 * @param {Player} player 
+	 */
     constructor(player) {
         this.player = player;
         this.dimensions = new Vector(Room.WIDTH, Room.HEIGHT);
@@ -283,7 +290,23 @@ export default class Room {
 			});
 
 			// Since the player is technically always colliding with itself, skip it.
-			if (entity === this.player) {
+			if (entity instanceof Player) {
+				entity.weapons.forEach((weapon) => {
+					if (weapon.readyForNewEnemy() && this.entities.filter((entity2) => entity2 instanceof Enemy).length !== 0) {
+						weapon.attackEnemy(
+							this.getClosestEnemyToPlayer()
+						);
+					}
+
+					if (weapon.isAttacking) {
+						this.entities.filter((entity2) => entity2 instanceof Enemy).forEach((enemy) => {
+							if (weapon.didCollideWithEntity(enemy.hitbox)) {
+								enemy.receiveDamage(weapon.damage);
+							}
+						}); 
+					}
+				});
+
 				return;
 			}
 
@@ -314,5 +337,34 @@ export default class Room {
 				tile.render(this.adjacentOffset);
 			});
 		});
+	}
+
+	getClosestEnemyToPlayer() {
+		var enemies = this.entities.filter((entity) => entity instanceof Enemy)
+
+		var closestEnemy = enemies[0];
+
+		enemies.forEach((enemy) => {
+			closestEnemy = this.getCloserEnemy(closestEnemy, enemy, this.player);
+		});
+
+		return closestEnemy;
+	}
+
+	/**
+	 * 
+	 * @param {Enemy} enemy1 
+	 * @param {Enemy} enemy2 
+	 * @param {GameEntity} target 
+	 */
+	getCloserEnemy(enemy1, enemy2, target) {
+		var distance1 = Math.abs(enemy1.position.x - target.position.x) + Math.abs(enemy1.position.y - target.position.y)
+		var distance2 = Math.abs(enemy2.position.x - target.position.x) + Math.abs(enemy2.position.y - target.position.y)
+
+		if (distance1 < distance2) {
+			return enemy1;
+		} else {
+			return enemy2;
+		}
 	}
 }

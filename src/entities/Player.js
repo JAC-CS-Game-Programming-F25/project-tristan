@@ -71,7 +71,7 @@ export default class Player extends GameEntity {
         super.update(dt);
 
         this.weapons.forEach((weapon) => {
-            weapon.update();
+            weapon.update(dt);
         });
     }
     
