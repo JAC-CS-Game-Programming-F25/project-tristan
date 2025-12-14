@@ -8,7 +8,7 @@ export default class UserInterface {
      * 
      * @param {Player} player
      */
-    constructor(player) {
+    constructor(player, round) {
         this.player = player;
 
         this.healthBar = new HealthBar(3, 3, this.player);
@@ -18,7 +18,9 @@ export default class UserInterface {
 
         timer.addTask(() => {
             this.time--;
-        }, 2)
+        }, 2);
+
+        this.round = round;
     }
 
     render() {
@@ -28,6 +30,9 @@ export default class UserInterface {
         context.textAlign = 'right';
         context.font = '18px aria';
         context.fillStyle = Colour.White;
+
+        context.fillText("Round " + this.round, CANVAS_WIDTH / 2, 0)
+
         context.fillText(this.time, CANVAS_WIDTH - 10, 0);
 
         context.restore();

@@ -61,7 +61,7 @@ export default class Room {
 	 * 
 	 * @param {Player} player 
 	 */
-    constructor(player) {
+    constructor(player, round) {
         this.player = player;
         this.dimensions = new Vector(Room.WIDTH, Room.HEIGHT);
 
@@ -71,10 +71,12 @@ export default class Room {
             Tile.TILE_SIZE
         );
 
+		this.round = round;
+
         this.tiles = this.generateWallsAndFloors();
 
         // Generate entities at the start of a wave
-        this.entities = this.generateEntities();
+        this.entities = [];
 
         // Will be filled with cash for player to pick up whenever they kill enemies
         this.objects = [];
