@@ -2,6 +2,7 @@ import State from "../../lib/State.js";
 import { timer } from "../globals.js";
 import Room from "../objects/Room.js";
 import Player from "../entities/Player.js";
+import UserInterface from "../services/UserInterface.js";
 
 export default class PlayState extends State {
 	constructor() {
@@ -9,6 +10,7 @@ export default class PlayState extends State {
 
 		this.player = new Player();
 		this.room = new Room(this.player);
+		this.userInterface = new UserInterface(this.player);
 	}
 
 	update(dt) {
@@ -26,5 +28,6 @@ export default class PlayState extends State {
 
 	render() {
 		this.room.render();
+		this.userInterface.render();
 	}
 }
