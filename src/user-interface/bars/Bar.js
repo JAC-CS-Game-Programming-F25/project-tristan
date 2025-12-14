@@ -1,4 +1,6 @@
 import Vector from "../../../lib/Vector.js";
+import Enemy from "../../entities/enemies/Enemy.js";
+import GameEntity from "../../entities/GameEntity.js";
 import Player from "../../entities/Player.js";
 import Colour from "../../enums/Colour.js";
 import { context } from "../../globals.js";
@@ -15,13 +17,13 @@ export default class Bar {
      * 
      * @param {number} x Horizontal position on the canvas
      * @param {number} y Vertical position on the canvas
-     * @param {Player} player The player who has this bar
+     * @param {GameEntity} entity The player who has this bar
 	 * @param {Colour} colour The colour of the inner bar
      */
-    constructor(x, y, player, colour) {
+    constructor(x, y, entity, colour) {
         this.position = new Vector(x, y);
 
-        this.player = player;
+        this.entity = entity;
         
         // Original size of the inner bar
         this.originalBarSize = Bar.WIDTH - Bar.INNER_BAR_OFFSET * 2;
@@ -35,6 +37,8 @@ export default class Bar {
 
         // Colour of the inner bar
         this.barColour = colour;
+
+		this.forEnemy = this.entity instanceof Enemy;
     }
 
     render() {
@@ -57,10 +61,10 @@ export default class Bar {
 		context.beginPath();
 		// The rectangle that changes based on what classes that inherit want.
 		context.roundRect(
-			this.position.x + 2,
-			this.position.y + 2,
+			this.position.x + (this.forEnemy ? 1 : 2),
+			this.position.y + (this.forEnemy ? 1 : 2),
 			this.barSize,
-			6,
+			(this.forEnemy? 1 : 6),
 			[50, this.roundCorner, this.roundCorner, 50]
 		);
 		context.fill();

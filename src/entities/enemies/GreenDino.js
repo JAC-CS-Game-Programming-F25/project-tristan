@@ -2,6 +2,7 @@ import Enemy from "./Enemy.js";
 import EnemyStateName from "../../enums/EnemyStateName.js";
 import Direction from "../../enums/Direction.js";
 import Animation from "../../../lib/Animation.js";
+import HealthBar from "../../user-interface/bars/HealthBar.js";
 
 export default class GreenDino extends Enemy {
     static SPEED = 10;
@@ -25,5 +26,7 @@ export default class GreenDino extends Enemy {
         }
 
         this.stateMachine = this.initializeStateMachine(animations);
+
+        this.healthBar = new HealthBar(this.position.x, this.position.y, this, true);
     }
 }

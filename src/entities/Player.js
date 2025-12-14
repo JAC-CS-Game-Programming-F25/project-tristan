@@ -87,8 +87,6 @@ export default class Player extends GameEntity {
         });
 
         context.restore();
-
-        // console.log("Frame: " + this.currentAnimation.getCurrentFrame())
     }
 
     initializeStateMachine() {

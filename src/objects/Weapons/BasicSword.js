@@ -18,7 +18,7 @@ export default class BasicSword extends Weapon {
 
         this.range = 4 * Tile.TILE_SIZE;
 
-        this.cooldown = 2;
+        this.cooldown = 1;
 
         this.damage = 1;
     }
