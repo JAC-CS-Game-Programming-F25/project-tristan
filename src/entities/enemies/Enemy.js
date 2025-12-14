@@ -5,6 +5,7 @@ import StateMachine from "../../../lib/StateMachine.js";
 import { getRandomPositiveInteger} from "../../../lib/Random.js";
 import EnemyStateName from "../../enums/EnemyStateName.js";
 import EnemyWalkingState from "../../states/entity/enemy/EnemyWalkingState.js";
+import HealthBar from "../../user-interface/bars/HealthBar.js";
 
 export default class Enemy extends GameEntity {
     static WIDTH = 16;
@@ -27,6 +28,20 @@ export default class Enemy extends GameEntity {
         this.dimensions.y = Enemy.HEIGHT;
 
         this.player = player;
+
+        this.healthBar = new HealthBar(this.position.x, this.position.y, this, true);
+    }
+
+    update(dt) {
+        super.update(dt);
+
+        this.healthBar.update();
+    }
+
+    render() {
+        super.render();
+
+        this.healthBar.render();
     }
 
     receiveDamage(damage) {

@@ -200,7 +200,6 @@ export default class Weapon extends GameObject {
     }
 
     readyForNewEnemy() {
-        console.log("Enem: " + this.enemyToAttack + " Hit: " + this.hitEnemy + " cd: " + this.currentCooldown)
         return this.enemyToAttack === "" && !this.hitEnemy && this.currentCooldown <= 0;
     }
 }
