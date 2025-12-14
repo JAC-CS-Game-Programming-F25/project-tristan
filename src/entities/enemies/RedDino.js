@@ -11,7 +11,7 @@ export default class RedDino extends Enemy {
 
         this.direction = Direction.Right;
 
-        this.hitboxOffsets.set(3, 10, -6, -10); // CHANGE THESE, TODOOOOOOOOOOOOOOOOOOOOOOOOO
+        this.hitboxOffsets.set(3, 15, -6, -10); // CHANGE THESE, TODOOOOOOOOOOOOOOOOOOOOOOOOO
         this.speed = RedDino.SPEED;
 
         this.totalHealth = 2;

@@ -207,10 +207,8 @@ export default class Room {
 	generateEntities() {
 		const entities = new Array();
 
-		const enemyType = EnemyType[pickRandomElement(Object.keys(EnemyType))];
-
 		for (let i = 0; i < 5; i++) {
-			entities.push(EnemyFactory.createInstance(enemyType, this.player));
+			entities.push(EnemyFactory.createInstance(EnemyType[pickRandomElement(Object.keys(EnemyType))], this.player));
 		}
 
 		entities.push(this.player);

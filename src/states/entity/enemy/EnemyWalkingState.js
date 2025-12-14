@@ -30,11 +30,13 @@ export default class EnemyWalkingState extends State {
     move(dt) {
         if (this.enemy.position.x > this.player.position.x) {
             this.enemy.direction = Direction.Left;
+            this.enemy.isFacingLeft = true;
             
             this.enemy.position.x -= this.enemy.speed * dt;
 
         } else if (this.enemy.position.x < this.player.position.x) {
             this.enemy.direction = Direction.Right;
+            this.enemy.isFacingLeft = false;
 
             this.enemy.position.x += this.enemy.speed * dt;
         }
