@@ -15,7 +15,7 @@ import Tile from '../objects/Tile.js';
 export default class Player extends GameEntity {
     static WIDTH = 16;
     static HEIGHT = 16;
-    static INVULNERABLE_DURATION = 1.5;
+    static INVULNERABLE_DURATION = 2;
     static INVULNERABLE_FLASH_INTERVAL = 0.1;
     static MAX_SPEED = 75;
 

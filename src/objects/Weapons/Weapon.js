@@ -113,6 +113,8 @@ export default class Weapon extends GameObject {
         )) {
             this.hitEnemy = true;
 
+            this.enemyToAttack.receiveDamage(this.damage);
+
             return;
         }
 
@@ -145,6 +147,10 @@ export default class Weapon extends GameObject {
             this.hitEnemy = false;
             this.currentCooldown = this.cooldown;
             this.isAttacking = false;
+
+            if (this.enemyToAttack !== "") {
+                this.enemyToAttack = "";
+            }
 
             return;
         }
@@ -200,6 +206,7 @@ export default class Weapon extends GameObject {
     }
 
     readyForNewEnemy() {
+        //console.log("Enem: " + this.enemyToAttack + " Attacking: " + this.isAttacking + " cd: " + this.currentCooldown)
         return this.enemyToAttack === "" && !this.hitEnemy && this.currentCooldown <= 0;
     }
 }

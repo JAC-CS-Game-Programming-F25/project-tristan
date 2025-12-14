@@ -297,14 +297,6 @@ export default class Room {
 							this.getClosestEnemyToPlayer()
 						);
 					}
-
-					if (weapon.isAttacking && weapon.enemyToAttack === "") {
-						this.entities.filter((entity2) => entity2 instanceof Enemy).forEach((enemy) => {
-							if (weapon.didCollideWithEntity(enemy.hitbox)) {
-								enemy.receiveDamage(weapon.damage);
-							}
-						}); 
-					}
 				});
 
 				return;
