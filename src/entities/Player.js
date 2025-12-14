@@ -8,6 +8,9 @@ import StateMachine from '../../lib/StateMachine.js';
 import PlayerStateName from '../enums/PlayerStateName.js';
 import PlayerWalkingState from '../states/entity/player/PlayerWalkingState.js';
 import PlayerIdlingState from '../states/entity/player/PlayerIdlingState.js';
+import BasicSword from '../objects/Weapons/BasicSword.js';
+import Vector from '../../lib/Vector.js';
+import Tile from '../objects/Tile.js';
 
 export default class Player extends GameEntity {
     static WIDTH = 16;
@@ -57,6 +60,19 @@ export default class Player extends GameEntity {
         this.invulnerabilityTimer = null;
 
         this.stateMachine = this.initializeStateMachine();
+
+        this.weapons = [new BasicSword(
+            new Vector(this.position.x + Tile.TILE_SIZE, this.position.y - Tile.TILE_SIZE),
+            this
+        )];
+    }
+
+    update(dt) {
+        super.update(dt);
+
+        this.weapons.forEach((weapon) => {
+            weapon.update();
+        });
     }
     
     render() {
@@ -65,6 +81,10 @@ export default class Player extends GameEntity {
         context.globalAlpha = this.alpha;
 
         super.render();
+
+        this.weapons.forEach((weapon) => {
+            weapon.render();
+        });
 
         context.restore();
 

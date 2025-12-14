@@ -4,6 +4,7 @@ const ImageName = {
     PlayerIdle: 'player_idle',
     DinoGreen: 'dino_green',
     DinoRed: 'dino_red',
+    Icons: 'icons',
 }
 
 export default ImageName;

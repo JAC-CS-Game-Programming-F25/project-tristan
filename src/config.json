@@ -29,6 +29,12 @@
 			"path": "../assets/images/Enemies/DinoSprites - mort.png",
 			"width": 576,
 			"height": 24
+		},
+		{
+			"name": "icons",
+			"path": "../assets/images/Icons/16x16.png",
+			"width": 256,
+			"height": 2192
 		}
 	],
 	"fonts": [
