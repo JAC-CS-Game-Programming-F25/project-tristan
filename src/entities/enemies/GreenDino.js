@@ -7,7 +7,7 @@ import HealthBar from "../../user-interface/bars/HealthBar.js";
 export default class GreenDino extends Enemy {
     static SPEED = 10;
 
-    constructor(sprites, player) {
+    constructor(sprites, player, round) {
         super(sprites, player);
 
         this.direction = Direction.Right;
@@ -15,8 +15,10 @@ export default class GreenDino extends Enemy {
         this.hitboxOffsets.set(3, 15, -6, -10); // CHANGE THESE, TODOOOOOOOOOOOOOOOOOOOOOOOOO
         this.speed = GreenDino.SPEED;
 
-        this.totalHealth = 4;
+        this.totalHealth = 4 + Math.floor(round / 2);
         this.health = this.totalHealth;
+
+        this.damage += Math.floor(round / 2);
 
         const animations = {
             [EnemyStateName.Walking]: {

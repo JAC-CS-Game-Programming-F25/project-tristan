@@ -48,7 +48,7 @@ export default class PlayState extends State {
 			this.round += 1;
 			this.userInterface.round = this.round;
 
-			this.room.entities = this.room.generateEntities();
+			this.room.entities = this.room.generateEntities(this.round);
 		}
 	}
 

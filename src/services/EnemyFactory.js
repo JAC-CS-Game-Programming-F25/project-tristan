@@ -15,7 +15,7 @@ export default class EnemyFactory {
 	 * @param {string} type A string using the EnemyType enum.
 	 * @returns An instance of an enemy specified by EnemyType.
 	 */
-    static createInstance(type, player) {
+    static createInstance(type, player, round) {
         EnemyFactory.GREEN_DINO_SPRITES = Sprite.generateSpritesFromSpriteSheet(
             images.get(ImageName.DinoGreen),
             (Tile.TILE_SIZE + 8),
@@ -30,10 +30,10 @@ export default class EnemyFactory {
 
         switch (type) {
             case EnemyType.DinoGreen:
-                return new GreenDino(EnemyFactory.GREEN_DINO_SPRITES, player);
+                return new GreenDino(EnemyFactory.GREEN_DINO_SPRITES, player, round);
             
             case EnemyType.DinoRed:
-                return new RedDino(EnemyFactory.RED_DINO_SPRITES, player);
+                return new RedDino(EnemyFactory.RED_DINO_SPRITES, player, round);
         }
     }
 }
