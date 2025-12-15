@@ -1,10 +1,12 @@
 import State from "../../lib/State.js";
-import { timer, stateMachine } from "../globals.js";
+import { timer, stateStack } from "../globals.js";
 import Room from "../objects/Room.js";
 import Player from "../entities/Player.js";
 import UserInterface from "../services/UserInterface.js";
 import GameStateName from "../enums/GameStateName.js";
 import Enemy from "../entities/enemies/Enemy.js";
+import TransitionState from "./TransitionState.js";
+import VictoryState from "./VictoryState.js";
 
 export default class PlayState extends State {
 	constructor() {
@@ -17,6 +19,14 @@ export default class PlayState extends State {
 		this.player = new Player();
 		this.room = new Room(this.player);
 		this.userInterface = new UserInterface(this.player, this.round);
+
+		this.victoryState = new VictoryState();
+	}
+
+	enter() {
+		super.enter();
+
+		this.userInterface.time = 5;
 	}
 
 	update(dt) {
@@ -24,10 +34,17 @@ export default class PlayState extends State {
 
 		timer.update(dt);
 
+		if (this.round === 10) {
+			TransitionState.fade(() => {
+				stateStack.pop();
+				stateStack.push(this.victoryState);
+			})
+		}
+
 		if (this.player.isDead) {
-			stateMachine.change(GameStateName.Transition, {
+			stateStack.change(GameStateName.Transition, {
 				fromState: this,
-				toState: stateMachine.states[GameStateName.GameOver],
+				toState: stateStack.states[GameStateName.GameOver],
 			});
 		}
 

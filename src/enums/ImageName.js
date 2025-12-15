@@ -5,6 +5,7 @@ const ImageName = {
     DinoGreen: 'dino_green',
     DinoRed: 'dino_red',
     Icons: 'icons',
+    Brotato: 'brotato',
 }
 
 export default ImageName;

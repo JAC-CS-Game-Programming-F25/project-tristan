@@ -35,6 +35,12 @@
 			"path": "../assets/images/Icons/16x16.png",
 			"width": 256,
 			"height": 2192
+		},
+		{
+			"name": "brotato",
+			"path": "../assets/images/Brotato_cover.jpg",
+			"width": 460,
+			"height": 215
 		}
 	],
 	"fonts": [
