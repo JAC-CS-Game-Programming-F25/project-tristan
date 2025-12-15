@@ -2,11 +2,12 @@ import GameObject from "../GameObject.js";
 import Tile from "../../objects/Tile.js";
 import Sprite from "../../../lib/Sprite.js";
 import Player from "../../entities/Player.js";
-import { images, timer } from "../../globals.js";
+import { images, sounds, timer } from "../../globals.js";
 import ImageName from "../../enums/ImageName.js";
 import Vector from "../../../lib/Vector.js";
 import Enemy from "../../entities/enemies/Enemy.js";
 import { isAABBCollision } from "../../../lib/Collision.js";
+import SoundName from "../../enums/SoundName.js";
 
 export default class Weapon extends GameObject {
     static WIDTH = Tile.TILE_SIZE;
@@ -112,6 +113,8 @@ export default class Weapon extends GameObject {
             this.enemyToAttack.hitbox.dimensions.y,
         )) {
             this.hitEnemy = true;
+
+            sounds.play(SoundName.Hit);
 
             this.enemyToAttack.receiveDamage(this.damage);
 

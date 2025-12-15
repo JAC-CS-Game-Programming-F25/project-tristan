@@ -61,6 +61,13 @@
 			"path": "./assets/sounds/effects/selection-move.ogg",
 			"size": 5,
 			"volume": 0.2
+		},
+		{
+			"name": "hit",
+			"path": "./assets/sounds/effects/hit-not-effective.wav",
+			"size": 1,
+			"volume": 0.2
 		}
+
 	]
 }
