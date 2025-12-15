@@ -67,6 +67,12 @@
 			"path": "./assets/sounds/effects/hit-not-effective.wav",
 			"size": 1,
 			"volume": 0.2
+		},
+		{
+			"name": "new-round",
+			"path":"../assets/sounds/effects/pokemon-red_blue_yellow-item-found-sound-effect.mp3",
+			"size": 5,
+			"volume": 0.2
 		}
 
 	]

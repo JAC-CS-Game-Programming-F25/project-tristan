@@ -26,6 +26,9 @@
  * 
  * Font:
  * @see https://fonts.google.com/specimen/VT323
+ * 
+ * Item Obtain Sound from Pokemon (my in-between rounds sound):
+ * @see https://www.myinstants.com/en/instant/pokemon-item-found-50824/
  */
 
 import GameStateName from './enums/GameStateName.js';

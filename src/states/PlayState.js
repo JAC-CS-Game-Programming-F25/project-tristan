@@ -1,5 +1,5 @@
 import State from "../../lib/State.js";
-import { timer, stateStack } from "../globals.js";
+import { timer, stateStack, sounds } from "../globals.js";
 import Room from "../objects/Room.js";
 import Player from "../entities/Player.js";
 import UserInterface from "../services/UserInterface.js";
@@ -9,6 +9,7 @@ import TransitionState from "./TransitionState.js";
 import VictoryState from "./VictoryState.js";
 import GameOverState from "./GameOverState.js";
 import ShopState from "./ShopState.js";
+import SoundName from "../enums/SoundName.js";
 
 export default class PlayState extends State {
 	constructor() {
@@ -78,6 +79,8 @@ export default class PlayState extends State {
 			).length === 0) &&
 			!this.isInBetween && !this.isStarting
 		) {
+			sounds.play(SoundName.NewRound);
+
 			stateStack.push(new ShopState(this.player));
 
 			this.userInterface.time = 5;
