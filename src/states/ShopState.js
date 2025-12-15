@@ -5,6 +5,7 @@ import BasicSword from "../objects/Weapons/BasicSword.js";
 import GridMenu from "../user-interface/elements/GridMenu.js";
 import Vector from "../../lib/Vector.js";
 import Tile from "../objects/Tile.js";
+import Weapon from "../objects/Weapons/Weapon.js";
 
 export default class ShopState extends State {
 
@@ -33,8 +34,6 @@ export default class ShopState extends State {
             GridMenu.BATTLE_MOVE_GRID_MENU.height,
             shopItems
         );
-
-        console.log(this.gridMenu)
     }
 
     update() {
@@ -74,8 +73,11 @@ export default class ShopState extends State {
 
             this.player.weapons.push(
                 new BasicSword(
-                    new Vector(this.player.position.x + Tile.TILE_SIZE, this.player.position.y),
-                    this
+                    new Vector(
+                        this.player.position.x + Weapon.getXWeaponModifier(this.player.weapons.length - 1), 
+                        this.player.position.y + Weapon.getYWeaponModifier(this.player.weapons.length - 1)
+                    ),
+                    this.player
                 )
             );
         }

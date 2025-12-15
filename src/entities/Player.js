@@ -11,6 +11,7 @@ import PlayerIdlingState from '../states/entity/player/PlayerIdlingState.js';
 import BasicSword from '../objects/Weapons/BasicSword.js';
 import Vector from '../../lib/Vector.js';
 import Tile from '../objects/Tile.js';
+import Weapon from '../objects/Weapons/Weapon.js';
 
 export default class Player extends GameEntity {
     static WIDTH = 16;
@@ -61,10 +62,14 @@ export default class Player extends GameEntity {
 
         this.stateMachine = this.initializeStateMachine();
 
-        this.weapons = [new BasicSword(
-            new Vector(this.position.x + Tile.TILE_SIZE, this.position.y - Tile.TILE_SIZE),
-            this
-        )];
+        this.weapons = [];
+
+        this.weapons.push(
+            new BasicSword(
+                new Vector(this.position.x + Tile.TILE_SIZE, this.position.y - Tile.TILE_SIZE),
+                this
+            )
+        );
 
         this.points = 0;
     }

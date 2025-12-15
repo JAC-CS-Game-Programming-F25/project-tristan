@@ -51,7 +51,7 @@ export default class Weapon extends GameObject {
 
         this.hitEnemy = false;
 
-        this.weaponNumber = 0;
+        this.weaponNumber = this.player.weapons.length;
         
         timer.addTask(() => { this.currentCooldown--}, 2);
 	}
@@ -61,8 +61,8 @@ export default class Weapon extends GameObject {
 
 		if (!this.isAttacking) {
 			this.position = new Vector(
-                this.player.position.x + this.getXWeaponModifier(this.weaponNumber), 
-                this.player.position.y + this.getYWeaponModifier(this.weaponNumber)
+                this.player.position.x + Weapon.getXWeaponModifier(this.weaponNumber), 
+                this.player.position.y + Weapon.getYWeaponModifier(this.weaponNumber)
             );
 		}   
         else {
@@ -139,8 +139,8 @@ export default class Weapon extends GameObject {
             this.hitbox.position.y,
             this.hitbox.dimensions.x,
             this.hitbox.dimensions.y,
-            this.player.hitbox.position.x + this.getXWeaponModifier(this.weaponNumber),
-            this.player.hitbox.position.y + this.getYWeaponModifier(this.weaponNumber),
+            this.player.hitbox.position.x + Weapon.getXWeaponModifier(this.weaponNumber),
+            this.player.hitbox.position.y + Weapon.getYWeaponModifier(this.weaponNumber),
             this.hitbox.dimensions.x,
             this.hitbox.dimensions.y,
         )) {
@@ -159,22 +159,22 @@ export default class Weapon extends GameObject {
             this.enemyToAttack = "";
         }
 
-        if (this.position.x > this.player.position.x + this.getXWeaponModifier(this.weaponNumber)) {
+        if (this.position.x > this.player.position.x + Weapon.getXWeaponModifier(this.weaponNumber)) {
             this.position.x -= this.speed * dt;
 
-        } else if (this.position.x < this.player.position.x + this.getXWeaponModifier(this.weaponNumber)) {
+        } else if (this.position.x < this.player.position.x + Weapon.getXWeaponModifier(this.weaponNumber)) {
             this.position.x += this.speed * dt;
         }
 
-        if (this.position.y > this.player.position.y + this.getYWeaponModifier(this.weaponNumber)) {
+        if (this.position.y > this.player.position.y + Weapon.getYWeaponModifier(this.weaponNumber)) {
             this.position.y -= this.speed * dt;
             
-        } else if (this.position.y < this.player.position.y + this.getYWeaponModifier(this.weaponNumber)) {
+        } else if (this.position.y < this.player.position.y + Weapon.getYWeaponModifier(this.weaponNumber)) {
             this.position.y += this.speed * dt;
         }
     }
 
-    getXWeaponModifier(weaponNumber) {
+    static getXWeaponModifier(weaponNumber) {
         switch(weaponNumber) {
             case 0:
             case 1:
@@ -189,7 +189,7 @@ export default class Weapon extends GameObject {
         }
     }
 
-    getYWeaponModifier(weaponNumber) {
+    static getYWeaponModifier(weaponNumber) {
         switch(weaponNumber) {
             case 0:
             case 3:

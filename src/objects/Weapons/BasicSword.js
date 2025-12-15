@@ -20,6 +20,6 @@ export default class BasicSword extends Weapon {
 
         this.cooldown = 1;
 
-        this.damage = 5;
+        this.damage = 1;
     }
 }
