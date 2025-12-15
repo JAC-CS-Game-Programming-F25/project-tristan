@@ -18,7 +18,7 @@ export default class ShopState extends State {
 
         this.player = player;
 
-        const defaultOption = { text: "-", onSelect: () => { stateStack.pop();} };
+        const defaultOption = { text: "EXIT", onSelect: () => { stateStack.pop();} };
 
         const shopItems = [
             { text: "HP-UP - 25 Points", onSelect: () => this.HpUp() },

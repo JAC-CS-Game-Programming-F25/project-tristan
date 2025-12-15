@@ -4,6 +4,7 @@ import State from "../../lib/State.js";
 import GameStateName from "../enums/GameStateName.js";
 import ImageName from "../enums/ImageName.js";
 import { images, input, stateStack, context, CANVAS_HEIGHT, CANVAS_WIDTH } from "../globals.js";
+import PointsManager from "../services/PointsManager.js";
 import TitleScreenState from "./TitleScreenState.js";
 import TransitionState from "./TransitionState.js";
 import VictoryState from "./VictoryState.js";
@@ -21,7 +22,13 @@ export default class GameOverState extends State {
 			images.get(ImageName.Brotato),
 			VictoryState.BACKGROUND.WIDTH,
 			VictoryState.BACKGROUND.HEIGHT
-		)
+		);
+	}
+
+	enter() {
+		super.enter();
+
+		PointsManager.savePoints(0);
 	}
 
 	update() {
