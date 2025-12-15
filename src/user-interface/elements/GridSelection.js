@@ -22,7 +22,7 @@ export default class GridSelection extends UserInterfaceElement {
         // Each item has different positions, so I just hardcode 
         // instead of looping through
         items[0].position = new Vector(
-            this.position.x + this.gapHeight * 2,
+            this.position.x + this.gapHeight * 4,
             this.position.y + this.gapHeight
         );
 
@@ -32,7 +32,7 @@ export default class GridSelection extends UserInterfaceElement {
         );
 
         items[2].position = new Vector(
-            this.position.x + this.gapHeight * 2,
+            this.position.x + this.gapHeight * 4,
             this.position.y + this.gapHeight * 3
         );
 

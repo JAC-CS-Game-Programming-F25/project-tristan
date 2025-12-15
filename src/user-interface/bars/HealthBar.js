@@ -62,6 +62,8 @@ export default class HealthBar extends Bar {
 			this.barColour = this.quarterLifeColour;
 		} else if (this.entity.health <= this.halfLife) {
 			this.barColour = this.halfLifeColour;
+		} else {
+			this.barColour = Colour.Lime;
 		}
 
 		this.barSize = this.originalBarSize / (this.entity.totalHealth / this.entity.health)

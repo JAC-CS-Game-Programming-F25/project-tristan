@@ -8,6 +8,7 @@ import Enemy from "../entities/enemies/Enemy.js";
 import TransitionState from "./TransitionState.js";
 import VictoryState from "./VictoryState.js";
 import GameOverState from "./GameOverState.js";
+import ShopState from "./ShopState.js";
 
 export default class PlayState extends State {
 	constructor() {
@@ -77,6 +78,8 @@ export default class PlayState extends State {
 			).length === 0) &&
 			!this.isInBetween && !this.isStarting
 		) {
+			stateStack.push(new ShopState(this.player));
+
 			this.userInterface.time = 5;
 
 			this.userInterface.round = this.round + 1;
