@@ -17,6 +17,8 @@ export default class PlayState extends State {
 
 		this.isStarting = true;
 
+		this.isInBetween = false;
+
 		this.player = new Player();
 		this.room = new Room(this.player);
 		this.userInterface = new UserInterface(this.player, this.round);
@@ -51,24 +53,35 @@ export default class PlayState extends State {
 			});
 		}
 
-		if (this.userInterface.time <= 0) {
+		if (this.userInterface.time <= 0 && this.isStarting) {
 			this.isStarting = false;
 			this.round = 0;
+			
+			this.isInBetween = true;
 		}
+		
+		if (this.userInterface.time <= 0 && this.isInBetween) {
+			this.isInBetween = false;
+			this.userInterface.time = 60;
 
-		if (
+			this.round += 1;
+			
+			this.userInterface.round = this.round;
+
+			this.room.entities = this.room.generateEntities(this.round);
+			
+		} else if (
 			(this.userInterface.time <= 0 || 
 			this.room.entities.filter(
 				(entity) => entity instanceof Enemy
 			).length === 0) &&
-			!this.isStarting
+			!this.isInBetween && !this.isStarting
 		) {
-			this.userInterface.time = 60;
+			this.userInterface.time = 5;
 
-			this.round += 1;
-			this.userInterface.round = this.round;
+			this.userInterface.round = this.round + 1;
 
-			this.room.entities = this.room.generateEntities(this.round);
+			this.isInBetween = true;
 		}
 	}
 

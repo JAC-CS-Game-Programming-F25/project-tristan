@@ -35,6 +35,10 @@ export default class UserInterface {
 
         context.fillText(this.time, CANVAS_WIDTH - 10, 0);
 
+        context.textBaseline = 'bottom';
+        context.textAlign = 'left';
+        context.fillText("Points: " + this.player.points, 10, CANVAS_HEIGHT);
+
         context.restore();
         context.save();
 
