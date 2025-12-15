@@ -1,11 +1,28 @@
 /**
  * Game Name
+ * Protato
  *
  * Authors
+ * Tristan Raymond
  *
  * Brief description
+ * Brotato but worse I guess
  *
  * Asset sources
+ * Dungeon:
+ * @see https://pixel-poem.itch.io/dungeon-assetpuck
+ * 
+ * Enemies:
+ * @see https://arks.itch.io/dino-characters
+ * 
+ * Icons:
+ * @see https://clockworkraven.itch.io/raven-fantasy-icons
+ * 
+ * Player:
+ * @see https://otterisk.itch.io/hana-caraka-base-character
+ * 
+ * Brotato cover:
+ * @see https://en.wikipedia.org/wiki/Brotato
  */
 
 import GameStateName from './enums/GameStateName.js';
