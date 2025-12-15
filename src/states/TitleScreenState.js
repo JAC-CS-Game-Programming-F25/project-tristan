@@ -4,6 +4,7 @@ import State from "../../lib/State.js";
 import GameStateName from "../enums/GameStateName.js";
 import ImageName from "../enums/ImageName.js";
 import { images, input, stateStack, context, CANVAS_HEIGHT, CANVAS_WIDTH } from "../globals.js";
+import InstructionsState from "./InstructionsState.js";
 import PlayState from "./PlayState.js";
 import TransitionState from "./TransitionState.js";
 import VictoryState from "./VictoryState.js";
@@ -23,14 +24,14 @@ export default class TitleScreenState extends State {
 			VictoryState.BACKGROUND.HEIGHT
 		)
 
-		this.playState = new PlayState();
+		this.instructionsState = new InstructionsState();
 	}
 
 	update() {
 		if (input.isKeyPressed(Input.KEYS.ENTER)) {
 			TransitionState.fade(() => {
 				stateStack.pop();
-				stateStack.push(this.playState);
+				stateStack.push(this.instructionsState);
 			})
 		}
 	}
