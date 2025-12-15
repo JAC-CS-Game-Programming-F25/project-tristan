@@ -79,7 +79,7 @@ export default class Room {
         // Will be filled with cash for player to pick up whenever they kill enemies
         this.objects = [];
 
-        //this.renderQueue = this.buildRenderQueue();
+        this.renderQueue = this.buildRenderQueue();
 
         this.adjacentOffset = new Vector();
     }

@@ -19,7 +19,7 @@ import {
 	images,
 	timer,
 	sounds,
-	stateMachine,
+	stateStack,
 } from './globals.js';
 import PlayState from './states/PlayState.js';
 import GameOverState from './states/GameOverState.js';
@@ -47,15 +47,10 @@ fonts.load(fontDefinitions);
 sounds.load(soundDefinitions);
 
 // Add all the states to the state machine.
-stateMachine.add(GameStateName.TitleScreen, new TitleScreenState());
-stateMachine.add(GameStateName.GameOver, new GameOverState());
-stateMachine.add(GameStateName.Victory, new VictoryState());
-stateMachine.add(GameStateName.Play, new PlayState());
-
-stateMachine.change(GameStateName.Play);
+stateStack.push(new TitleScreenState());
 
 const game = new Game(
-	stateMachine,
+	stateStack,
 	context,
 	timer,
 	canvas.width,
