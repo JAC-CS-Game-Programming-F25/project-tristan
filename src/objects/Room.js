@@ -74,7 +74,7 @@ export default class Room {
         this.tiles = this.generateWallsAndFloors();
 
         // Generate entities at the start of a wave
-        this.entities = this.generateEntities();
+        this.entities = [this.player];
 
         // Will be filled with cash for player to pick up whenever they kill enemies
         this.objects = [];
@@ -211,11 +211,12 @@ export default class Room {
         return tiles;
     }
 
-	generateEntities() {
+	generateEntities(round) {
 		const entities = new Array();
 
-		for (let i = 0; i < 5; i++) {
-			entities.push(EnemyFactory.createInstance(EnemyType[pickRandomElement(Object.keys(EnemyType))], this.player));
+		// Every 2 rounds, an extra enemy spawns
+		for (let i = 0; i < 5 + Math.floor(round / 2); i++) {
+			entities.push(EnemyFactory.createInstance(EnemyType[pickRandomElement(Object.keys(EnemyType))], this.player, round));
 		}
 
 		entities.push(this.player);
