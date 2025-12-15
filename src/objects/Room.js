@@ -273,6 +273,10 @@ export default class Room {
 				// }
 
 				entity.isDead = true;
+
+				if (entity instanceof Enemy) {
+					this.player.points += 10
+				}
 			}
 
 			entity.update(dt);

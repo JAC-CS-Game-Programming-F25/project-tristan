@@ -8,6 +8,7 @@ import Enemy from "../entities/enemies/Enemy.js";
 import TransitionState from "./TransitionState.js";
 import VictoryState from "./VictoryState.js";
 import GameOverState from "./GameOverState.js";
+import ShopState from "./ShopState.js";
 
 export default class PlayState extends State {
 	constructor() {
@@ -16,6 +17,8 @@ export default class PlayState extends State {
 		this.round = "Starting";
 
 		this.isStarting = true;
+
+		this.isInBetween = false;
 
 		this.player = new Player();
 		this.room = new Room(this.player);
@@ -51,24 +54,37 @@ export default class PlayState extends State {
 			});
 		}
 
-		if (this.userInterface.time <= 0) {
+		if (this.userInterface.time <= 0 && this.isStarting) {
 			this.isStarting = false;
 			this.round = 0;
+			
+			this.isInBetween = true;
 		}
+		
+		if (this.userInterface.time <= 0 && this.isInBetween) {
+			this.isInBetween = false;
+			this.userInterface.time = 60;
 
-		if (
+			this.round += 1;
+			
+			this.userInterface.round = this.round;
+
+			this.room.entities = this.room.generateEntities(this.round);
+			
+		} else if (
 			(this.userInterface.time <= 0 || 
 			this.room.entities.filter(
 				(entity) => entity instanceof Enemy
 			).length === 0) &&
-			!this.isStarting
+			!this.isInBetween && !this.isStarting
 		) {
-			this.userInterface.time = 60;
+			stateStack.push(new ShopState(this.player));
 
-			this.round += 1;
-			this.userInterface.round = this.round;
+			this.userInterface.time = 5;
 
-			this.room.entities = this.room.generateEntities(this.round);
+			this.userInterface.round = this.round + 1;
+
+			this.isInBetween = true;
 		}
 	}
 

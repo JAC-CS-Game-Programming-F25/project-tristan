@@ -47,6 +47,17 @@
 
 	],
 	"sounds": [
-		
+		{
+			"name": "selection-choice",
+			"path": "./assets/sounds/effects/selection-choice.ogg",
+			"size": 5,
+			"volume": 0.2
+		},
+		{
+			"name": "selection-move",
+			"path": "./assets/sounds/effects/selection-move.ogg",
+			"size": 5,
+			"volume": 0.2
+		}
 	]
 }

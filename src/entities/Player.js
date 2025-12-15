@@ -65,6 +65,8 @@ export default class Player extends GameEntity {
             new Vector(this.position.x + Tile.TILE_SIZE, this.position.y - Tile.TILE_SIZE),
             this
         )];
+
+        this.points = 0;
     }
 
     update(dt) {
