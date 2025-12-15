@@ -28,7 +28,7 @@ export default class UserInterface {
         
         context.textBaseline = 'top';
         context.textAlign = 'right';
-        context.font = '18px aria';
+        context.font = '18px VT323';
         context.fillStyle = Colour.White;
 
         context.fillText("Round " + this.round, CANVAS_WIDTH / 2 + 100, 0)

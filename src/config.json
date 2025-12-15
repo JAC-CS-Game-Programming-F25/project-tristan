@@ -44,7 +44,10 @@
 		}
 	],
 	"fonts": [
-
+		{
+			"name": "VT323",
+			"path": "../assets/fonts/VT323-Regular.ttf"
+		}
 	],
 	"sounds": [
 		{

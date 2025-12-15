@@ -23,6 +23,9 @@
  * 
  * Brotato cover:
  * @see https://en.wikipedia.org/wiki/Brotato
+ * 
+ * Font:
+ * @see https://fonts.google.com/specimen/VT323
  */
 
 import GameStateName from './enums/GameStateName.js';

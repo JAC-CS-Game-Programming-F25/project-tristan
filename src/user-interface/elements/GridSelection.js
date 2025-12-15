@@ -45,7 +45,7 @@ export default class GridSelection extends UserInterfaceElement {
     }
 
     initializeFont() {
-        return `${Math.min(UserInterfaceElement.FONT_SIZE, this.gapHeight)}px aria`;
+        return `${Math.min(UserInterfaceElement.FONT_SIZE, this.gapHeight)}px VT323`;
     }
 
     update() {

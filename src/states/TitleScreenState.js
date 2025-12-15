@@ -39,10 +39,10 @@ export default class TitleScreenState extends State {
 		this.sprite[0].render(0, 0);
 
 		context.save();
-		context.font = '20px aria';
+		context.font = '20px VT323';
 		context.fillStyle = 'grey';
 		context.fillText(
-			'Press Enter to Continue',
+			'Press Enter to Start',
 			CANVAS_WIDTH / 2 - 50,
 			CANVAS_HEIGHT - 20
 		);

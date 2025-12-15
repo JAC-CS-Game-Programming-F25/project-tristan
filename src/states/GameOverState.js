@@ -40,12 +40,12 @@ export default class GameOverState extends State {
 		this.sprite[0].render(0, 0);
 
 		context.save();
-		context.font = '70px aria';
+		context.font = '70px VT323';
 		context.fillStyle = 'red';
 		context.textBaseline = 'middle';
 		context.textAlign = 'center';
 		context.fillText('Game Over!', CANVAS_WIDTH / 2 + 20, CANVAS_HEIGHT / 2 - 50);
-		context.font = '20px aria';
+		context.font = '20px VT323';
 		context.fillStyle = 'white';
 		context.fillText(
 			'Press Enter to Continue',

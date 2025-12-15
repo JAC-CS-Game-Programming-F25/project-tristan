@@ -32,7 +32,7 @@ export default class HealthBar extends Bar {
 			context.translate(Bar.WIDTH + 5, 0);
 			context.textBaseline = 'top';
 			context.fillStyle = Colour.White;
-			context.font = '18px aria' //Font family TODOOOOOOOOOOOOOOOOOOOOO
+			context.font = '18px VT323';
 			context.fillText(this.entity.health + " / " + this.entity.totalHealth, 0, 0)
 		}
 		

@@ -39,12 +39,12 @@ export default class VictoryState extends State {
 		this.sprite[0].render(0, 0);
 
 		context.save();
-		context.font = '80px aria';
+		context.font = '80px VT323';
 		context.fillStyle = 'blue';
 		context.textBaseline = 'middle';
 		context.textAlign = 'center';
 		context.fillText('Victory!', CANVAS_WIDTH / 2 + 40, CANVAS_HEIGHT / 2 - 50);
-		context.font = '20px aria';
+		context.font = '20px VT323';
 		context.fillStyle = 'white';
 		context.fillText(
 			'Press Enter to Continue',
