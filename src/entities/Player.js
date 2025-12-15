@@ -12,6 +12,7 @@ import BasicSword from '../objects/Weapons/BasicSword.js';
 import Vector from '../../lib/Vector.js';
 import Tile from '../objects/Tile.js';
 import Weapon from '../objects/Weapons/Weapon.js';
+import PointsManager from "../services/PointsManager.js";
 
 export default class Player extends GameEntity {
     static WIDTH = 16;
@@ -71,7 +72,7 @@ export default class Player extends GameEntity {
             )
         );
 
-        this.points = 0;
+        this.points = PointsManager.loadPoints();
     }
 
     update(dt) {
@@ -80,6 +81,8 @@ export default class Player extends GameEntity {
         this.weapons.forEach((weapon) => {
             weapon.update(dt);
         });
+
+        PointsManager.savePoints(this.points);
     }
     
     render() {
