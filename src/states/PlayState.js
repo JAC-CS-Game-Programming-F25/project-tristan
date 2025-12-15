@@ -7,6 +7,7 @@ import GameStateName from "../enums/GameStateName.js";
 import Enemy from "../entities/enemies/Enemy.js";
 import TransitionState from "./TransitionState.js";
 import VictoryState from "./VictoryState.js";
+import GameOverState from "./GameOverState.js";
 
 export default class PlayState extends State {
 	constructor() {
@@ -21,6 +22,7 @@ export default class PlayState extends State {
 		this.userInterface = new UserInterface(this.player, this.round);
 
 		this.victoryState = new VictoryState();
+		this.gameOverState = new GameOverState();
 	}
 
 	enter() {
@@ -42,9 +44,10 @@ export default class PlayState extends State {
 		}
 
 		if (this.player.isDead) {
-			stateStack.change(GameStateName.Transition, {
-				fromState: this,
-				toState: stateStack.states[GameStateName.GameOver],
+			TransitionState.fade(() => {
+				stateStack.pop();
+
+				stateStack.push(this.gameOverState);
 			});
 		}
 
