@@ -35,4 +35,4 @@ export const timer = new Timer();
 export const input = new Input(canvas);
 export const sounds = new Sounds();
 
-export const DEBUG = true;
+export const DEBUG = false;
