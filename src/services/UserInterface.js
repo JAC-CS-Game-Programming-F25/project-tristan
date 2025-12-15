@@ -13,7 +13,7 @@ export default class UserInterface {
 
         this.healthBar = new HealthBar(3, 3, this.player);
 
-        this.maxTime = 10;
+        this.maxTime = 5;
         this.time = this.maxTime;
 
         timer.addTask(() => {
@@ -31,7 +31,7 @@ export default class UserInterface {
         context.font = '18px aria';
         context.fillStyle = Colour.White;
 
-        context.fillText("Round " + this.round, CANVAS_WIDTH / 2, 0)
+        context.fillText("Round " + this.round, CANVAS_WIDTH / 2 + 100, 0)
 
         context.fillText(this.time, CANVAS_WIDTH - 10, 0);
 
